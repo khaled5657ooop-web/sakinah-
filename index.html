@@ -18,52 +18,42 @@
             height: 100%;
             border: none;
         }
-        #install-btn {
+        /* تصميم زر تحميل التطبيق */
+        .download-btn {
             position: fixed;
-            bottom: 20px;
+            bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             font-size: 16px;
             font-weight: bold;
             font-family: Tahoma, sans-serif;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-            display: none;
+            text-decoration: none;
+            border-radius: 35px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
             z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6);
         }
     </style>
 </head>
 <body>
+
+    <!-- عرض الموقع الأصلي -->
     <iframe src="https://sakinah1.ai.studio/" allowfullscreen></iframe>
-    <button id="install-btn">📱 تثبيت التطبيق على جهازك</button>
 
-    <script>
-        let deferredPrompt;
-        const installBtn = document.getElementById('install-btn');
+    <!-- زر تحميل التطبيق المباشر -->
+    <a href="رابط_ملف_الـ_APK_الخاص_بك_هنا" class="download-btn" download>
+        📥 تحميل تطبيق سكينة (APK)
+    </a>
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = 'block';
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                installBtn.style.display = 'none';
-            }
-        });
-
-        window.addEventListener('appinstalled', () => {
-            installBtn.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
